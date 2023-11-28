@@ -9,6 +9,11 @@ import PauseIcon from "assets/pause.svg"
 
 function App() {
     const [isRunning, setIsRunning] = useState<boolean>(false)
+    document.body.onkeyup = (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.code === "Space") {
+            setIsRunning(!isRunning)
+        }
+    }
 
     return (
         <Container className="gap-40">
