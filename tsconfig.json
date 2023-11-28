@@ -13,9 +13,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "paths": {
-      "*" : ["./src/*"] 
-    },
+    "baseUrl": "./src",
     "types": ["node"],
 
     /* Linting */
