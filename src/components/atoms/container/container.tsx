@@ -1,5 +1,19 @@
 import { ReactNode } from "react"
 
-export default function Container({ children }: { children: ReactNode }) {
-    return <div className="w-full h-full p-10">{children}</div>
+export default function Container({
+    children,
+    className,
+}: {
+    children: ReactNode
+    className?: string
+}) {
+    return (
+        <div
+            className={`h-full p-10 flex flex-col justify-center items-center ${
+                className ?? ""
+            }`}
+        >
+            {children}
+        </div>
+    )
 }
