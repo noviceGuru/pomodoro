@@ -9,9 +9,8 @@ export default function Container({
 }) {
     return (
         <div
-            className={`h-full p-10 flex flex-col justify-center items-center ${
-                className ?? ""
-            }`}
+            className={`h-full p-10 flex flex-col justify-center items-center 
+            ${className ?? ""}`}
         >
             {children}
         </div>
