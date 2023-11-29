@@ -19,8 +19,16 @@ export default function Clock({
         return () => clearInterval(interval)
     }, [isRunning])
 
+    useEffect(() => {
+        if (seconds > 0) {
+            document.title = clockExpression
+        }
+    }, [seconds])
+
     const clockMinutes = Math.floor(seconds / 60)
     const clockSeconds = Math.floor(seconds % 60)
+    const clockExpression = `${clockMinutes < 10 ? 0 : ""} ${clockMinutes} :${" "}
+    ${clockSeconds < 10 ? 0 : ""} ${clockSeconds}`
 
     return (
         <div
@@ -32,8 +40,7 @@ export default function Clock({
             onClick={() => setIsRunning(!isRunning)}
         >
             <p className="font-bold md:text-2xl lg:text-3xl 2xl:text-4xl absolute z-10">
-                {clockMinutes < 10 ? 0 : ""} {clockMinutes} :{" "}
-                {clockSeconds < 10 ? 0 : ""} {clockSeconds}
+                {clockExpression}
             </p>
         </div>
     )
