@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react"
 
-export default function Clock({ isRunning }: { isRunning: boolean }) {
+export default function Clock({
+    isRunning,
+    setIsRunning,
+}: {
+    isRunning: boolean
+    setIsRunning: (newValue: boolean) => void
+}) {
     const [seconds, setSeconds] = useState<number>(0)
 
     useEffect(() => {
@@ -17,12 +23,16 @@ export default function Clock({ isRunning }: { isRunning: boolean }) {
     const clockSeconds = Math.floor(seconds % 60)
 
     return (
-        <div className={`border-2 border-lime-400 grid place-items-center rounded-full m-6 
+        <div
+            className={`border-2 border-lime-400 grid place-items-center rounded-full m-6 
         w-32 sm:w-36 md:w-40 lg:w-44 xl:w-56 2xl:w-64
         h-32 sm:h-36 md:h-40 lg:h-44 xl:h-56 2xl:h-64 
-        ${isRunning? "border-4 bg-amber-600": ""}`}>
-            <p className="font-bold md:text-2xl lg:text-3xl 2xl:text-4xl">
-                {clockMinutes < 10 ? 0 : ""} {clockMinutes} : {" "}
+        ${isRunning ? "border-4 bg-amber-600" : ""}
+        cursor-pointer`}
+            onClick={() => setIsRunning(!isRunning)}
+        >
+            <p className="font-bold md:text-2xl lg:text-3xl 2xl:text-4xl absolute z-10">
+                {clockMinutes < 10 ? 0 : ""} {clockMinutes} :{" "}
                 {clockSeconds < 10 ? 0 : ""} {clockSeconds}
             </p>
         </div>
