@@ -1,0 +1,18 @@
+name: Test on Merge Request
+on:
+    pull_request:
+        branches: main
+jobs:
+    Run-Tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - uses: pnpm/action-setup@v2
+              name: Install pnpm
+              id: pnpm-install
+              with:
+                  version: 8
+            - name: Install dependencies
+              run: pnpm install
+            - name: Run tests
+              run: pnpm run test
