@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react"
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
 import "react-circular-progressbar/dist/styles.css"
+
+import useClock from "./useClock"
 
 export default function Clock({
     isRunning,
@@ -9,28 +10,7 @@ export default function Clock({
     isRunning: boolean
     setIsRunning: (newValue: boolean) => void
 }) {
-    const [seconds, setSeconds] = useState<number>(0)
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (isRunning) {
-                setSeconds(prevSeconds => prevSeconds + 1)
-            }
-        }, 1000)
-
-        return () => clearInterval(interval)
-    }, [isRunning])
-
-    useEffect(() => {
-        if (seconds > 0) {
-            document.title = clockExpression
-        }
-    }, [seconds])
-
-    const clockMinutes = Math.floor(seconds / 60)
-    const clockSeconds = Math.floor(seconds % 60)
-    const clockExpression = `${clockMinutes < 10 ? 0 : ""} ${clockMinutes} :${" "}
-    ${clockSeconds < 10 ? 0 : ""} ${clockSeconds}`
+    const { clockExpression, seconds } = useClock({ isRunning, setIsRunning })
 
     return (
         <div
@@ -45,7 +25,7 @@ export default function Clock({
                 {clockExpression}
             </p>
             <CircularProgressbar
-                value={seconds*100/(25*30)}
+                value={(seconds * 100) / (25 * 60)}
                 strokeWidth={2}
                 styles={buildStyles({
                     strokeLinecap: "butt",
