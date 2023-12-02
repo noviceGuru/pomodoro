@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar"
+import "react-circular-progressbar/dist/styles.css"
 
 export default function Clock({
     isRunning,
@@ -42,6 +44,16 @@ export default function Clock({
             <p className="font-bold md:text-2xl lg:text-3xl 2xl:text-4xl absolute z-10">
                 {clockExpression}
             </p>
+            <CircularProgressbar
+                value={seconds*100/(25*30)}
+                strokeWidth={2}
+                styles={buildStyles({
+                    strokeLinecap: "butt",
+                    pathTransitionDuration: 0.5,
+                    pathColor: "lime",
+                    trailColor: "red",
+                })}
+            />
         </div>
     )
 }
