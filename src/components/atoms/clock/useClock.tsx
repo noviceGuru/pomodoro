@@ -2,10 +2,10 @@ import { useEffect, useState } from "react"
 
 export default function useClock({
     isRunning,
-    setIsRunning,
+    selectedTime,
 }: {
     isRunning: boolean
-    setIsRunning: (newValue: boolean) => void
+    selectedTime: number
 }) {
     const [seconds, setSeconds] = useState<number>(0)
 
@@ -25,12 +25,14 @@ export default function useClock({
         }
     }, [seconds])
 
-    const clockMinutes = Math.floor(seconds / 60)
-    const clockSeconds = Math.floor(seconds % 60)
+    const remainingSecs = selectedTime*60 - seconds
+
+    const clockMinutes = Math.floor(remainingSecs / 60)
+    const clockSeconds = Math.floor(remainingSecs % 60)
     const clockExpression = `${
         clockMinutes < 10 ? 0 : ""
     } ${clockMinutes} :${" "}
     ${clockSeconds < 10 ? 0 : ""} ${clockSeconds}`
 
-    return { clockExpression, seconds }
+    return { clockExpression, remainingSecs }
 }

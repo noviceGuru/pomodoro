@@ -6,11 +6,16 @@ import useClock from "./useClock"
 export default function Clock({
     isRunning,
     setIsRunning,
+    selectedTime,
 }: {
     isRunning: boolean
     setIsRunning: (newValue: boolean) => void
+    selectedTime: number
 }) {
-    const { clockExpression, seconds } = useClock({ isRunning, setIsRunning })
+    const { clockExpression, remainingSecs } = useClock({
+        isRunning,
+        selectedTime,
+    })
 
     return (
         <div
@@ -25,7 +30,7 @@ export default function Clock({
                 {clockExpression}
             </p>
             <CircularProgressbar
-                value={(seconds * 100) / (25 * 60)}
+                value={(remainingSecs * 100) / (selectedTime * 60)}
                 strokeWidth={2}
                 styles={buildStyles({
                     strokeLinecap: "butt",
