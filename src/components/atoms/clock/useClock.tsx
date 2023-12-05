@@ -27,8 +27,8 @@ export default function useClock({
 
     const remainingSecs = selectedTime*60 - seconds
 
-    const clockMinutes = Math.floor(remainingSecs / 60)
-    const clockSeconds = Math.floor(remainingSecs % 60)
+    const clockMinutes = remainingSecs < 0 ? -Math.ceil(remainingSecs/60) : (Math.floor(remainingSecs / 60))
+    const clockSeconds = remainingSecs < 0 ? -Math.ceil(remainingSecs % 60) : Math.floor(remainingSecs % 60)
     const clockExpression = `${
         clockMinutes < 10 ? 0 : ""
     } ${clockMinutes} :${" "}
