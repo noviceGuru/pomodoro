@@ -23,7 +23,7 @@ export default function useClock({
         if (seconds > 0) {
             document.title = clockExpression
         }
-    }, [seconds])
+    }, [seconds, selectedTime])
 
     const remainingSecs = selectedTime*60 - seconds
 
