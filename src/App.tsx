@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import Clock from "components/atoms/clock/Clock"
+import Clock from "components/atoms/clock/clock"
 import Button from "components/atoms/button/button"
 import Container from "components/atoms/container/container"
 
