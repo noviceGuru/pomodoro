@@ -25,6 +25,7 @@ export default function Clock({
         ${isRunning ? "border-4 bg-amber-600" : ""}
         cursor-pointer`}
             onClick={() => setIsRunning(!isRunning)}
+            data-testid="clock"
         >
             <p className="font-bold md:text-2xl lg:text-3xl 2xl:text-4xl absolute z-10">
                 {clockExpression}
