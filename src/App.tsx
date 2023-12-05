@@ -26,8 +26,12 @@ function App() {
     const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
 
     return (
-        <Container className="gap-40">
-            <TimeMenu setSelectedTime={setSelectedTime} timeMenu={timeMenu} />
+        <Container className="h-[100dvh] justify-between">
+            <TimeMenu
+                setSelectedTime={setSelectedTime}
+                timeMenu={timeMenu}
+                selectedTime={selectedTime}
+            />
             <Button
                 className="hover:bg-red-500 rounded-full"
                 onClick={() => setIsRunning(!isRunning)}
