@@ -10,24 +10,16 @@ export default function TimeMenu({
     return (
         <div className="flex bg-slate-600 rounded-full p-1 gap-2">
             {Object.entries(timeMenu).map(([name, time]) => (
-                <div key={name}>
-                    <input
-                        type="radio"
-                        id={`input-${time}`}
-                        onChange={() =>
-                            setSelectedTime({
-                                [`${name}`]: time,
-                            } as TimeMenuPropType)
-                        }
-                        name="time-selection"
-                        className="hidden"
-                    ></input>
-                    <label
-                        htmlFor={`input-${time}`}
-                        className={`inline-block capitalize px-2 text-center bg-blue-400 cursor-pointer rounded-full`}
-                    >
-                        {name}
-                    </label>
+                <div
+                    key={name}
+                    className={`capitalize grid items-center px-2 bg-blue-400 cursor-pointer rounded-full`}
+                    onClick={() =>
+                        setSelectedTime({
+                            [`${name}`]: time,
+                        } as TimeMenuPropType)
+                    }
+                >
+                    {name}
                 </div>
             ))}
         </div>
