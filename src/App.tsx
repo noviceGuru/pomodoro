@@ -1,4 +1,4 @@
-import { useState } from "react"
+import useApp from "./useApp"
 
 import Clock from "components/atoms/clock/clock"
 import Container from "components/atoms/container/container"
@@ -9,25 +9,16 @@ import PlayIcon from "assets/play.svg"
 import PauseIcon from "assets/pause.svg"
 import ListIcon from "assets/list.svg"
 
-import { TimeMenuPropType } from "features/types"
-
-const initialTimeMenu = {
-    pomodoro: 25,
-    "short break": 5,
-    "long break": 15,
-}
-
 function App() {
-    const [isRunning, setIsRunning] = useState<boolean>(false)
-    const [selectedTime, setSelectedTime] = useState<TimeMenuPropType>({ pomodoro: 25 })
-    const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
-    const [showOverlay, setShowOverlay] = useState<boolean>(false)
-
-    document.body.onkeyup = (e: KeyboardEvent) => {
-        if ((e.key === "Enter" || e.code === "Space") && !showOverlay) {
-            setIsRunning(!isRunning)
-        }
-    }
+    const {
+        showOverlay,
+        setShowOverlay,
+        selectedTime,
+        setSelectedTime,
+        timeMenu,
+        isRunning,
+        setIsRunning,
+    } = useApp()
 
     return (
         <div>
