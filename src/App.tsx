@@ -1,7 +1,6 @@
 import { useState } from "react"
 
 import Clock from "components/atoms/clock/clock"
-import Button from "components/atoms/button/button"
 import Container from "components/atoms/container/container"
 
 import PlayIcon from "assets/play.svg"
@@ -23,7 +22,7 @@ function App() {
         "short break": 5,
         "long break": 15,
     }
-const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
+    const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
 
     return (
         <Container className="h-[100dvh] justify-between">
@@ -33,13 +32,13 @@ const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
                 selectedTime={selectedTime}
                 setIsRunning={setIsRunning}
             />
-            <Button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
+            <button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
                 <img
                     src={isRunning ? PauseIcon : PlayIcon}
                     alt="play-pause-button"
                     className="m-6 w-20 sm:w-28 md:w-36 lg:w-40 xl:w-44 2xl:w-56"
                 />
-            </Button>
+            </button>
             <Clock
                 isRunning={isRunning}
                 setIsRunning={setIsRunning}
