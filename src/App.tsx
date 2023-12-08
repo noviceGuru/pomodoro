@@ -31,6 +31,7 @@ const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
                 setSelectedTime={setSelectedTime}
                 timeMenu={timeMenu}
                 selectedTime={selectedTime}
+                setIsRunning={setIsRunning}
             />
             <Button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
                 <img
