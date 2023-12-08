@@ -25,13 +25,13 @@ export default function useClock({
         }
     }, [seconds, selectedTime])
 
+    useEffect(()=> setSeconds(0), [selectedTime])
+
     const remainingSecs = selectedTime*60 - seconds
 
     const clockMinutes = remainingSecs < 0 ? -Math.ceil(remainingSecs/60) : (Math.floor(remainingSecs / 60))
     const clockSeconds = remainingSecs < 0 ? -Math.ceil(remainingSecs % 60) : Math.floor(remainingSecs % 60)
-    const clockExpression = `${
-        clockMinutes < 10 ? 0 : ""
-    } ${clockMinutes} :${" "}
+    const clockExpression = `${clockMinutes < 10 ? 0 : ""} ${clockMinutes} :${" "}
     ${clockSeconds < 10 ? 0 : ""} ${clockSeconds}`
 
     return { clockExpression, remainingSecs }
