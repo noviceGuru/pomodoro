@@ -7,18 +7,29 @@ export default function Overlay({
     show: boolean
     setShow: React.Dispatch<React.SetStateAction<boolean>>
 }) {
+    const closeOnBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        if (e.target === e.currentTarget) {
+            setShow(false)
+        }
+    }
 
     return (
         show && (
-            <div className="absolute bg-slate-300 h-4/5 w-4/6 z-20 rounded-2xl p-10">
-                <button
-                    type="button"
-                    className="absolute top-2 left-2 hover:rotate-90 hover:text-red-800 hover:font-bold transition-all duration-700"
-                    onClick={() => setShow(false)}
-                >
-                    X
-                </button>
-                {children}
+            <div
+                id="background"
+                className="fixed z-20 inset-0 bg-gray-400 bg-opacity-50 flex items-center justify-center"
+                onClick={closeOnBackdropClick}
+            >
+                <div className="bg-slate-400 h-4/5 w-4/6 rounded-2xl p-10 opacity-100">
+                    <button
+                        type="button"
+                        className="top-2 left-2 hover:rotate-90 hover:text-red-800 hover:font-bold transition-all duration-700"
+                        onClick={() => setShow(false)}
+                    >
+                        X
+                    </button>
+                    {children}
+                </div>
             </div>
         )
     )
