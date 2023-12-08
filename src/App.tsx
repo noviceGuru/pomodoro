@@ -23,15 +23,17 @@ function App() {
         "short break": 5,
         "long break": 15,
     }
-    const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
+const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
 
     return (
-        <Container className="gap-40">
-            <TimeMenu setSelectedTime={setSelectedTime} timeMenu={timeMenu} />
-            <Button
-                className="hover:bg-red-500 rounded-full"
-                onClick={() => setIsRunning(!isRunning)}
-            >
+        <Container className="h-[100dvh] justify-between">
+            <TimeMenu
+                setSelectedTime={setSelectedTime}
+                timeMenu={timeMenu}
+                selectedTime={selectedTime}
+                setIsRunning={setIsRunning}
+            />
+            <Button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
                 <img
                     src={isRunning ? PauseIcon : PlayIcon}
                     alt="play-pause-button"
