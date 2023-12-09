@@ -61,3 +61,21 @@ export const addLaps = <T>(data: T): Promise<T | string> => {
         }
     })
 }
+
+export const getAllLaps = <T>(): Promise<T[]> => {
+    return new Promise(resolve => {
+        request = indexedDB.open(dbName, version)
+
+        request.onsuccess = () => {
+            console.log("request.onsuccess - getAllData")
+            db = request.result
+            const tx = db.transaction(storeName, "readonly")
+            const store = tx.objectStore(storeName)
+            const res = store.getAll()
+            res.onsuccess = () => {
+                console.log(res.result)
+                resolve(res.result)
+            }
+        }
+    })
+}
