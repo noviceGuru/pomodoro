@@ -9,6 +9,8 @@ import PlayIcon from "assets/play.svg"
 import PauseIcon from "assets/pause.svg"
 import ListIcon from "assets/list.svg"
 
+import { addLaps } from "features/db"
+
 function App() {
     const {
         showOverlay,
@@ -32,6 +34,9 @@ function App() {
                     selectedTime={selectedTime}
                     setIsRunning={setIsRunning}
                 />
+                <button onClick={()=>addLaps({id: "1", type: "pomdoro", time: 32})}>
+                    DB start
+                </button>
                 <div className="flex flex-col gap-8">
                     <button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
                         <img

@@ -1,5 +1,6 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TimeMenuPropType } from "features/types"
+import { initDB } from "features/db"
 
 const initialTimeMenu = {
     pomodoro: 25,
@@ -18,6 +19,10 @@ export default function useApp() {
             setIsRunning(!isRunning)
         }
     }
+
+    useEffect(() => {
+        initDB()
+    }, [])
 
     return {
         showOverlay,
