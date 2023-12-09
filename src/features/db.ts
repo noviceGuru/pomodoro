@@ -24,8 +24,8 @@ export const initDB = (): Promise<boolean> => {
             }
         }
 
-        request.onsuccess = () => {
-            db = request.result
+        request.onsuccess = (event) => {
+            db = (event!.target! as unknown as { result: IDBDatabase }).result
             version = db.version
             console.log("request.onsuccess - initDB", version)
             resolve(true)

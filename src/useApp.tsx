@@ -14,6 +14,16 @@ export default function useApp() {
     const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
     const [showOverlay, setShowOverlay] = useState<boolean>(false)
 
+    const handleNext = () => {
+        setSelectedTime(
+            Object.keys(selectedTime)[0] === "pomodoro"
+                ? { "short break": 5 }
+                : { "pomodoro": 25 }
+        )
+
+        setIsRunning(false)
+    }
+
     document.body.onkeyup = (e: KeyboardEvent) => {
         if ((e.key === "Enter" || e.code === "Space") && !showOverlay) {
             setIsRunning(!isRunning)
@@ -32,5 +42,6 @@ export default function useApp() {
         timeMenu,
         isRunning,
         setIsRunning,
+        handleNext,
     }
 }
