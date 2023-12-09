@@ -19,7 +19,7 @@ export default function TimeMenu({
     }
 
     return (
-        <div className="flex bg-stone-700 rounded-full p-1 gap-2">
+        <div className="flex bg-stone-700 rounded-full p-1 gap-2 mt-6 sm:mt-0">
             {Object.entries(timeMenu).map(([name, time]) => (
                 <div
                     key={name}
