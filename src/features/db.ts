@@ -4,7 +4,7 @@ let version = 1
 
 export type Lap = {
     id: string
-    name: "pomdoro" | "short break" | "long break"
+    type: "pomodoro" | "short break" | "long break"
     time: number
 }
 
@@ -62,7 +62,7 @@ export const addLaps = <T>(data: T): Promise<T | string> => {
     })
 }
 
-export const getAllLaps = <T>(): Promise<T[]> => {
+export const getAllLaps = <Lap>(): Promise<Lap[]> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { v4 as uuidv4 } from "uuid"
-import { addLaps, initDB } from "features/db"
+import { Lap, addLaps, initDB } from "features/db"
 import { TimeMenuPropType } from "features/types"
 
 const initialTimeMenu = {
@@ -15,12 +15,14 @@ export default function useApp() {
     const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
     const [showOverlay, setShowOverlay] = useState<boolean>(false)
     const [seconds, setSeconds] = useState<number>(0)
+    const [lapRecord, setLapRecord] = useState<Lap>()
 
     const setSelectedTimeWrapper = (newState: TimeMenuPropType) => {
         setSelectedTime(oldState => {
             if (seconds > 0) {
-                addLaps({
+                setLapRecord({
                     id: uuidv4(),
+                    //@ts-ignore
                     type: Object.keys(oldState)[0] === "pomodoro" ? "pomodoro" : "break",
                     time: seconds,
                 })
@@ -28,6 +30,10 @@ export default function useApp() {
             return newState
         })
     }
+
+    useEffect(() => {
+        addLaps(lapRecord)
+    }, [lapRecord])
 
     const handleNext = () => {
         setSelectedTimeWrapper(
