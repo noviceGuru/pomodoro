@@ -6,8 +6,7 @@ import TimeMenu from "components/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
 import StatsButton from "components/atoms/stats-button/stats-button"
 import PlayPauseButton from "components/atoms/play-pause-button/play-pause-button"
-
-import NextItem from "assets/nextItem.svg"
+import NextButton from "components/atoms/next-button/next-button"
 
 function App() {
     const {
@@ -35,9 +34,7 @@ function App() {
                 />
                 <div className="flex flex-col gap-8">
                     <PlayPauseButton isRunning={isRunning} setIsRunning={setIsRunning} />
-                    <button className="flex justify-center" onClick={handleNext}>
-                        <img src={NextItem} alt="next-item-button" className="m-6 w-8 sm:w-14" />
-                    </button>
+                    <NextButton handleNext={handleNext} />
                 </div>
                 <StatsButton setShowOverlay={setShowOverlay} />
                 <Clock
