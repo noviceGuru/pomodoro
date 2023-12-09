@@ -5,9 +5,8 @@ import Container from "components/atoms/container/container"
 import TimeMenu from "components/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
 import StatsButton from "components/atoms/stats-button/stats-button"
+import PlayPauseButton from "components/atoms/play-pause-button/play-pause-button"
 
-import PlayIcon from "assets/play.svg"
-import PauseIcon from "assets/pause.svg"
 import NextItem from "assets/nextItem.svg"
 
 function App() {
@@ -35,13 +34,7 @@ function App() {
                     setIsRunning={setIsRunning}
                 />
                 <div className="flex flex-col gap-8">
-                    <button className="rounded-full" onClick={() => setIsRunning(!isRunning)}>
-                        <img
-                            src={isRunning ? PauseIcon : PlayIcon}
-                            alt="play-pause-button"
-                            className="m-6 w-20 sm:w-28 md:w-36 lg:w-40 xl:w-44 2xl:w-56"
-                        />
-                    </button>
+                    <PlayPauseButton isRunning={isRunning} setIsRunning={setIsRunning} />
                     <button className="flex justify-center" onClick={handleNext}>
                         <img src={NextItem} alt="next-item-button" className="m-6 w-8 sm:w-14" />
                     </button>
