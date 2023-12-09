@@ -100,3 +100,24 @@ export const deleteOneLap = (id: string): Promise<boolean> => {
         }
     })
 }
+
+export const deleteAllLaps = (): Promise<boolean> => {
+    return new Promise(resolve => {
+        request = indexedDB.open(dbName, version)
+
+        request.onsuccess = () => {
+            console.log("request.onsuccess - clearedLaps")
+            db = request.result
+            const tx = db.transaction(storeName, "readwrite")
+            const store = tx.objectStore(storeName)
+            const res = store.clear()
+
+            res.onsuccess = () => {
+                resolve(true)
+            }
+            res.onerror = () => {
+                resolve(false)
+            }
+        }
+    })
+}
