@@ -4,10 +4,10 @@ import Clock from "components/atoms/clock/clock"
 import Container from "components/atoms/container/container"
 import TimeMenu from "components/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
+import StatsButton from "components/stats-button/stats-button"
 
 import PlayIcon from "assets/play.svg"
 import PauseIcon from "assets/pause.svg"
-import ListIcon from "assets/list.svg"
 import NextItem from "assets/nextItem.svg"
 
 function App() {
@@ -46,12 +46,7 @@ function App() {
                         <img src={NextItem} alt="next-item-button" className="m-6 w-8 sm:w-14" />
                     </button>
                 </div>
-                <button
-                    className="flex justify-center absolute right-2 top-1"
-                    onClick={() => setShowOverlay(true)}
-                >
-                    <img src={ListIcon} alt="show-list-button" className="m-6 w-8 sm:w-14" />
-                </button>
+                <StatsButton setShowOverlay={setShowOverlay} />
                 <Clock
                     isRunning={isRunning}
                     setIsRunning={setIsRunning}
