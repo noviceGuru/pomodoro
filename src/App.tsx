@@ -4,7 +4,7 @@ import Clock from "components/atoms/clock/clock"
 import Container from "components/atoms/container/container"
 import TimeMenu from "components/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
-import StatsButton from "components/stats-button/stats-button"
+import StatsButton from "components/atoms/stats-button/stats-button"
 
 import PlayIcon from "assets/play.svg"
 import PauseIcon from "assets/pause.svg"
