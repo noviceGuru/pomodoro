@@ -25,7 +25,8 @@ export default function TimeMenu({
                     key={name}
                     className={`capitalize text-center grid items-center px-2 cursor-pointer rounded-full select-none
                     ${Object.keys(selectedTime)[0] === name ? "bg-lime-400" : ""} 
-                    transition-all duration-1000`}
+                    transition-color duration-1000
+                    md:text-xl lg:text-2xl 2xl:text-3xl`}
                     onClick={() => handleTimeMenuClick(name, time)}
                 >
                     {name}
