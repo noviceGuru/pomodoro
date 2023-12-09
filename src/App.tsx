@@ -17,6 +17,8 @@ function App() {
         isRunning,
         setIsRunning,
         handleNext,
+        seconds,
+        setSeconds,
     } = useApp()
 
     return (
@@ -39,6 +41,8 @@ function App() {
                 isRunning={isRunning}
                 setIsRunning={setIsRunning}
                 selectedTime={Object.values(selectedTime)[0]}
+                seconds={seconds}
+                setSeconds={setSeconds}
             />
         </div>
     )

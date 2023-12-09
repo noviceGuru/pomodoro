@@ -41,9 +41,9 @@ export const addLaps = <T>(data: T): Promise<T | string> => {
     return new Promise((resolve: (value: T | string | PromiseLike<T>) => void) => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = () => {
+        request.onsuccess = (event) => {
             console.log("request.onsuccess - addData", data)
-            db = request.result
+            db = (event!.target! as unknown as { result: IDBDatabase }).result
 
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
@@ -66,9 +66,9 @@ export const getAllLaps = <T>(): Promise<T[]> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = () => {
+        request.onsuccess = (event) => {
             console.log("request.onsuccess - getAllData")
-            db = request.result
+            db = (event!.target! as unknown as { result: IDBDatabase }).result
             const tx = db.transaction(storeName, "readonly")
             const store = tx.objectStore(storeName)
             const res = store.getAll()
@@ -84,9 +84,9 @@ export const deleteOneLap = (id: string): Promise<boolean> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = () => {
+        request.onsuccess = (event) => {
             console.log("request.onsuccess - deleteLap", id)
-            db = request.result
+            db = (event!.target! as unknown as { result: IDBDatabase }).result
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
             const res = store.delete(id)
@@ -105,9 +105,9 @@ export const deleteAllLaps = (): Promise<boolean> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = () => {
+        request.onsuccess = (event) => {
             console.log("request.onsuccess - clearedLaps")
-            db = request.result
+            db = (event!.target! as unknown as { result: IDBDatabase }).result
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
             const res = store.clear()

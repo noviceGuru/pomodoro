@@ -7,7 +7,7 @@ export default function TimeMenu({
     setIsRunning,
 }: {
     timeMenu: TimeMenuPropType
-    setSelectedTime: React.Dispatch<React.SetStateAction<TimeMenuPropType>>
+    setSelectedTime: (newState: TimeMenuPropType) => void
     selectedTime: TimeMenuPropType
     setIsRunning: React.Dispatch<React.SetStateAction<boolean>>
 }) {

@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 
 import ring from "assets/ring.mp3"
 
 export default function useClock({
     isRunning,
     selectedTime,
+    seconds,
+    setSeconds
 }: {
     isRunning: boolean
     selectedTime: number
+    seconds: number
+    setSeconds: React.Dispatch<React.SetStateAction<number>>
 }) {
-    const [seconds, setSeconds] = useState<number>(0)
     const audio = new Audio(ring)
 
     useEffect(() => {

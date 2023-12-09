@@ -7,14 +7,20 @@ export default function Clock({
     isRunning,
     setIsRunning,
     selectedTime,
+    seconds,
+    setSeconds
 }: {
     isRunning: boolean
     setIsRunning: (newValue: boolean) => void
     selectedTime: number
+    seconds: number
+    setSeconds: React.Dispatch<React.SetStateAction<number>>
 }) {
     const { clockExpression, remainingSecs } = useClock({
         isRunning,
         selectedTime,
+        seconds,
+        setSeconds
     })
 
     return (
