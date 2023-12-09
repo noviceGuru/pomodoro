@@ -1,7 +1,6 @@
 import useApp from "./useApp"
 
 import Clock from "components/atoms/clock/clock"
-import Container from "components/atoms/container/container"
 import TimeMenu from "components/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
 import StatsButton from "components/atoms/stats-button/stats-button"
@@ -21,28 +20,26 @@ function App() {
     } = useApp()
 
     return (
-        <div>
+        <div className="p-10 flex flex-col justify-between items-center h-[100dvh]">
             <Overlay show={showOverlay} setShow={setShowOverlay}>
                 Records Table here
             </Overlay>
-            <Container className="h-[100dvh] justify-between">
-                <TimeMenu
-                    setSelectedTime={setSelectedTime}
-                    timeMenu={timeMenu}
-                    selectedTime={selectedTime}
-                    setIsRunning={setIsRunning}
-                />
-                <div className="flex flex-col gap-8">
-                    <PlayPauseButton isRunning={isRunning} setIsRunning={setIsRunning} />
-                    <NextButton handleNext={handleNext} />
-                </div>
-                <StatsButton setShowOverlay={setShowOverlay} />
-                <Clock
-                    isRunning={isRunning}
-                    setIsRunning={setIsRunning}
-                    selectedTime={Object.values(selectedTime)[0]}
-                />
-            </Container>
+            <TimeMenu
+                setSelectedTime={setSelectedTime}
+                timeMenu={timeMenu}
+                selectedTime={selectedTime}
+                setIsRunning={setIsRunning}
+            />
+            <div className="flex flex-col gap-8">
+                <PlayPauseButton isRunning={isRunning} setIsRunning={setIsRunning} />
+                <NextButton handleNext={handleNext} />
+            </div>
+            <StatsButton setShowOverlay={setShowOverlay} />
+            <Clock
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
+                selectedTime={Object.values(selectedTime)[0]}
+            />
         </div>
     )
 }
