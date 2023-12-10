@@ -10,12 +10,12 @@ export default function Overlay({
     setShow: React.Dispatch<React.SetStateAction<boolean>>
 }) {
     const [tableData, setTableData] = useState<Lap[]>([])
-    
+
     useEffect(() => {
         //@ts-ignore
         getAllLaps().then((e: Lap) => setTableData(e))
     }, [show])
-    
+
     const closeOnBackdropClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if (e.target === e.currentTarget) {
             setShow(false)
@@ -24,12 +24,12 @@ export default function Overlay({
 
     const handleDeleteAll = () => {
         //@ts-ignore
-        deleteAllLaps().then(res=> getAllLaps().then((e: Lap)=>setTableData(e)))
+        deleteAllLaps().then(res => getAllLaps().then((e: Lap) => setTableData(e)))
     }
 
-    const handleDeleteOne = (id:string) => {
+    const handleDeleteOne = (id: string) => {
         //@ts-ignore
-        deleteOneLap(id).then(res=> getAllLaps().then((e: Lap)=>setTableData(e)))
+        deleteOneLap(id).then(res => getAllLaps().then((e: Lap) => setTableData(e)))
     }
 
     return (
@@ -47,14 +47,16 @@ export default function Overlay({
                         >
                             X
                         </button>
-                        <button
-                            className="mb-4 hover:text-red-800 transition-all duration-700 text-xs lg:text-base"
-                            onClick={handleDeleteAll}
-                        >
-                            Clear
-                        </button>
+                        {tableData.length > 0 && (
+                            <button
+                                className="mb-4 hover:text-red-800 transition-all duration-700 text-xs lg:text-base"
+                                onClick={handleDeleteAll}
+                            >
+                                Clear
+                            </button>
+                        )}
                     </div>
-                    <Stats tableData={tableData} deleteOne={handleDeleteOne}/>
+                    <Stats tableData={tableData} deleteOne={handleDeleteOne} />
                 </div>
             </div>
         )

@@ -8,7 +8,7 @@ export default function Stats({
     tableData: Lap[]
     deleteOne: (id: string) => void
 }) {
-    return (
+    return tableData.length > 0 ? (
         <table className="w-full rounded-2xl border-collapse bg-blue-300">
             <tbody>
                 {tableData.reverse().map(({ id, type, time }) => (
@@ -20,10 +20,19 @@ export default function Stats({
                     >
                         <td className="p-2">{type}</td>
                         <td className="w-20">{convertSecsToMins(time)}</td>
-                        <td className="cursor-pointer hover:text-red-900 text-center" onClick={()=>deleteOne(id)}>x</td>
+                        <td
+                            className="cursor-pointer hover:text-red-900 text-center"
+                            onClick={() => deleteOne(id)}
+                        >
+                            x
+                        </td>
                     </tr>
                 ))}
             </tbody>
         </table>
+    ) : (
+        <div className="h-full flex justify-center items-center">
+            <p> No laps yet</p>
+        </div>
     )
 }
