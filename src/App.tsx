@@ -6,7 +6,6 @@ import Overlay from "components/atoms/overlay/overlay"
 import StatsButton from "components/atoms/stats-button/stats-button"
 import PlayPauseButton from "components/atoms/play-pause-button/play-pause-button"
 import NextButton from "components/atoms/next-button/next-button"
-import Stats from "components/stats/stats"
 
 function App() {
     const {
@@ -24,9 +23,7 @@ function App() {
 
     return (
         <div className="p-10 flex flex-col justify-between items-center h-[100dvh]">
-            <Overlay show={showOverlay} setShow={setShowOverlay}>
-                <Stats />
-            </Overlay>
+            <Overlay show={showOverlay} setShow={setShowOverlay} />
             <TimeMenu
                 setSelectedTime={setSelectedTime}
                 timeMenu={timeMenu}
