@@ -12,7 +12,7 @@ const initialTimeMenu = {
 export default function useApp() {
     const [isRunning, setIsRunning] = useState<boolean>(false)
     const [selectedTime, setSelectedTime] = useState<TimeMenuPropType>({ pomodoro: 25 })
-    const [timeMenu, setTimeMenu] = useState(initialTimeMenu)
+    const [timeMenu] = useState(initialTimeMenu)
     const [showOverlay, setShowOverlay] = useState<boolean>(false)
     const [seconds, setSeconds] = useState<number>(0)
     const [lapRecord, setLapRecord] = useState<Lap>()
