@@ -1,12 +1,28 @@
 import { useState, useEffect } from "react"
-import { getAllLaps } from "features/db"
+import { getAllLaps, Lap } from "features/db"
+import { convertSecsToMins } from "features/utils"
 
 export default function Stats() {
-    const [tableData, setTableData] = useState<{}>()
+    const [tableData, setTableData] = useState<Lap[]>([])
 
     useEffect(() => {
-        getAllLaps().then(e => setTableData(e))
+        //@ts-ignore
+        getAllLaps().then((e: Lap) => setTableData(e))
     }, [])
 
-    return <div> {JSON.stringify(tableData)} </div>
+    return (
+        <table className="w-full rounded-2xl border-collapse bg-blue-300">
+            {tableData.reverse().map(({ id, type, time }) => (
+                <tr
+                    className={`w-full rounded-2xl  ${
+                        type === "pomodoro" ? "bg-rose-400" : "bg-slate-300"
+                    }`}
+                    key={id}
+                >
+                    <td className="p-2">{type}</td>
+                    <td className="w-20">{convertSecsToMins(time)}</td>
+                </tr>
+            ))}
+        </table>
+    )
 }
