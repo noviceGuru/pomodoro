@@ -8,6 +8,12 @@ export type Lap = {
     time: number
 }
 
+export type LapRecord = {
+    id: string
+    type: "pomodoro" | "break"
+    time: number
+}
+
 const storeName = "laps"
 const dbName = "pomodoroLaps"
 
