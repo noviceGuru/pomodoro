@@ -1,7 +1,7 @@
 import { Lap } from "features/db"
 import { convertSecsToMins } from "features/utils"
 
-export default function Stats({
+export default function StatsTable({
     tableData,
     deleteOne,
 }: {

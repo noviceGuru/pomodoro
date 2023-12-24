@@ -1,7 +1,7 @@
 import useApp from "./useApp"
 
 import Clock from "components/atoms/clock/clock"
-import TimeMenu from "components/time-menu/time-menu"
+import TimeMenu from "components/atoms/time-menu/time-menu"
 import Overlay from "components/atoms/overlay/overlay"
 import StatsButton from "components/atoms/stats-button/stats-button"
 import PlayPauseButton from "components/atoms/play-pause-button/play-pause-button"
