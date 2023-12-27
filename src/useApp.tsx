@@ -31,7 +31,9 @@ export default function useApp() {
     }
 
     useEffect(() => {
-        addLaps(lapRecord)
+        if (lapRecord) {
+            addLaps(lapRecord)
+        }
     }, [lapRecord])
 
     const handleNext = () => {
