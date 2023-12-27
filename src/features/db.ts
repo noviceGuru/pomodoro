@@ -21,11 +21,10 @@ export const initDB = (): Promise<boolean> => {
     return new Promise((resolve: (value: boolean | PromiseLike<boolean>) => void) => {
         request = indexedDB.open(dbName)
 
-        request.onupgradeneeded = () => {
-            db = request.result
+        request.onupgradeneeded = event => {
+            db = (event.target as IDBOpenDBRequest).result
 
             if (!db.objectStoreNames.contains(storeName)) {
-                console.log("Creating users store")
                 db.createObjectStore(storeName, { keyPath: "id" })
             }
         }
@@ -33,7 +32,6 @@ export const initDB = (): Promise<boolean> => {
         request.onsuccess = (event) => {
             db = (event!.target! as unknown as { result: IDBDatabase }).result
             version = db.version
-            console.log("request.onsuccess - initDB", version)
             resolve(true)
         }
 
@@ -47,9 +45,8 @@ export const addLaps = <T>(data: T): Promise<T | string> => {
     return new Promise((resolve: (value: T | string | PromiseLike<T>) => void) => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = (event) => {
-            console.log("request.onsuccess - addData", data)
-            db = (event!.target! as unknown as { result: IDBDatabase }).result
+        request.onsuccess = event => {
+            db = (event.target as IDBOpenDBRequest).result
 
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
@@ -72,14 +69,12 @@ export const getAllLaps = <Lap>(): Promise<Lap[]> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = (event) => {
-            console.log("request.onsuccess - getAllData")
-            db = (event!.target! as unknown as { result: IDBDatabase }).result
+        request.onsuccess = event => {
+            db = (event.target as IDBOpenDBRequest).result
             const tx = db.transaction(storeName, "readonly")
             const store = tx.objectStore(storeName)
             const res = store.getAll()
             res.onsuccess = () => {
-                console.log(res.result)
                 resolve(res.result)
             }
         }
@@ -90,9 +85,8 @@ export const deleteOneLap = (id: string): Promise<boolean> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = (event) => {
-            console.log("request.onsuccess - deleteLap", id)
-            db = (event!.target! as unknown as { result: IDBDatabase }).result
+        request.onsuccess = event => {
+            db = (event.target as IDBOpenDBRequest).result
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
             const res = store.delete(id)
@@ -111,9 +105,8 @@ export const deleteAllLaps = (): Promise<boolean> => {
     return new Promise(resolve => {
         request = indexedDB.open(dbName, version)
 
-        request.onsuccess = (event) => {
-            console.log("request.onsuccess - clearedLaps")
-            db = (event!.target! as unknown as { result: IDBDatabase }).result
+        request.onsuccess = event => {
+            db = (event.target as IDBOpenDBRequest).result
             const tx = db.transaction(storeName, "readwrite")
             const store = tx.objectStore(storeName)
             const res = store.clear()

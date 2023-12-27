@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
-import { getAllLaps } from "features/db"
-import { Lap } from "features/db"
+import { getAllLaps, Lap, deleteAllLaps, deleteOneLap } from "features/db"
 
 export default function useStats() {
     const [tableData, setTableData] = useState<Lap[]>([])
