@@ -1,6 +1,7 @@
+import React from "react"
 import Stats from "components/molecules/stats/stats"
 
-export default function Overlay({
+export default React.memo(function Overlay({
     show,
     setShow,
 }: {
@@ -24,4 +25,4 @@ export default function Overlay({
             </div>
         )
     )
-}
+})
